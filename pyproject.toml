@@ -4,12 +4,14 @@ build-backend = "hatchling.build"
 
 [project]
 name = "p2s"
-version = "0.1.1"
+version = "0.1.3"
 description = "Simple CLI Stats"
 readme = "README.md"
 authors = [{name = "Jonas Eschmann", email = "jonas.eschmann@gmail.com"}]
 license = {text = "MIT"}
-dependencies = []
+dependencies = [
+    "numpy"
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["p2s"]
