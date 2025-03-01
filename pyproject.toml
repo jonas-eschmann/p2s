@@ -1,0 +1,11 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ilc"
+version = "0.1.0"
+dependencies = []  # List dependencies here
+
+[tool.hatch.build.targets.wheel]
+packages = ["ilc"]
