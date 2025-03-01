@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "p2s"
-version = "0.1.4"
+version = "0.1.5"
 description = "Simple CLI Stats"
 readme = "README.md"
 authors = [{name = "Jonas Eschmann", email = "jonas.eschmann@gmail.com"}]
@@ -17,7 +17,9 @@ dependencies = [
 packages = ["p2s"]
 
 [project.scripts]
-p2s = "p2s.stats:main"
+p2s = "p2s:main"
+"p2s.count" = "p2s.count:main"
 "p2s.mean" = "p2s.mean:main"
 "p2s.std" = "p2s.std:main"
 "p2s.stats" = "p2s.stats:main"
+"p2s.q" = "p2s.q:main"
