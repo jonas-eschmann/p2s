@@ -3,9 +3,16 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "ilc"
-version = "0.1.0"
-dependencies = []  # List dependencies here
+name = "p2s"
+version = "0.1.1"
+description = "Simple CLI Stats"
+readme = "README.md"
+authors = [{name = "Jonas Eschmann", email = "jonas.eschmann@gmail.com"}]
+license = {text = "MIT"}
+dependencies = []
 
 [tool.hatch.build.targets.wheel]
-packages = ["ilc"]
+packages = ["p2s"]
+
+[project.scripts]
+p2s = "p2s.stats:main"
