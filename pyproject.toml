@@ -19,7 +19,10 @@ packages = ["p2s"]
 [project.scripts]
 p2s = "p2s:main"
 "p2s.count" = "p2s.count:main"
+"p2s.min" = "p2s.min:main"
+"p2s.max" = "p2s.max:main"
 "p2s.mean" = "p2s.mean:main"
 "p2s.std" = "p2s.std:main"
 "p2s.stats" = "p2s.stats:main"
 "p2s.q" = "p2s.q:main"
+"p2s.iqm" = "p2s.iqm:main"

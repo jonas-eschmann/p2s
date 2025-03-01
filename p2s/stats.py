@@ -2,6 +2,8 @@ import numpy as np
 from .flat import data
 
 print(f"Count: {np.count_nonzero(np.isnan(data) == False)}")
+print(f"Minimum: {np.nanmin(data)}")
+print(f"Maximum: {np.nanmax(data)}")
 print(f"Mean: {np.nanmean(data)}")
 print(f"Std: {np.nanstd(data)}")
 print(f"Q05: {np.nanquantile(data, 0.05)}")
