@@ -26,7 +26,6 @@ if Path(sys.argv[0]).name == "p2s":
             else:
                 print(f"Unknown format modifier: {c}")
     else:
-        exit(1)
         from .stats import *
 
 
