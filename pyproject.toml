@@ -18,3 +18,6 @@ packages = ["p2s"]
 
 [project.scripts]
 p2s = "p2s.stats:main"
+"p2s.mean" = "p2s.mean:main"
+"p2s.std" = "p2s.std:main"
+"p2s.stats" = "p2s.stats:main"
