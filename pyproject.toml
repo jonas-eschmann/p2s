@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "p2s"
-version = "0.1.9"
+version = "0.1.10"
 description = "Simple CLI Stats"
 readme = "README.md"
 authors = [{name = "Jonas Eschmann", email = "jonas.eschmann@gmail.com"}]
@@ -29,6 +29,7 @@ p2s = "p2s:main"
 "p2s.plot" = "p2s.plot:main"
 "p2s.scatter" = "p2s.scatter:main"
 "p2s.hist" = "p2s.hist:main"
+"p2s.filter" = "p2s.filter:main"
 "p2s.map" = "p2s.map:main"
 "p2s.reduce" = "p2s.reduce:main"
 "p2s.unique" = "p2s.unique:main"
