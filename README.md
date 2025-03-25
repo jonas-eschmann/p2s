@@ -27,3 +27,8 @@ seq 0 100 | p2s.std
 ```
 seq 0 100 | p2s.q 25
 ```
+
+# Map (lambda expression)
+```
+seq 0 100 | p2s.map "x: int(x) + 1"
+```
