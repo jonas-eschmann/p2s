@@ -9,10 +9,10 @@ def main():
         sys.exit(1)
 
     if len(sys.argv) < 2:
-        print("No lambda provided. Please provide a lambda as an argument.", file=sys.stderr)
+        print("No lambda provided. Please provide a lambda as an argument. Example labmda x: int(x)+1, just provide \"int(x)+1\"", file=sys.stderr)
         sys.exit(1)
 
-    tree = ast.parse(f"lambda {sys.argv[1]}", mode='eval')
+    tree = ast.parse(f"lambda x: {sys.argv[1]}", mode='eval')
     f = eval(compile(tree, filename='<ast>', mode='eval'))
     for x in sys.stdin:
         print(f(x[:-1]))
