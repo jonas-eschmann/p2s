@@ -29,6 +29,14 @@ seq 0 100 | p2s.q 25
 ```
 
 # Map (lambda expression)
+Each line is in `x`
 ```
-seq 0 100 | p2s.map "x: int(x) + 1"
+seq 0 100 | p2s.map "int(x) + 1"
 ```
+
+# Reduce
+Accumulator `a` and current `c`. Usage `p2s.reduce <lambda> <initial_accumulator>`
+seq 0 100 | p2s.reduce "float(a) + float(c)" "0"
+
+# Histogram
+seq 0 100 | p2s.hist --xlabel "Position" --output "hist.pdf"
