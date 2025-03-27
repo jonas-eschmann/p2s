@@ -11,7 +11,7 @@ if not "XY" in os.environ:
 data = []
 shortest_line_length = -1
 for line in sys.stdin:
-    parts = re.split(r"[^0-9.]+", line)
+    parts = re.split(r'[^0-9.eE+\-]+', line)
     line_data = [float(x.strip().strip(",") or "nan") for x in parts if len(x) > 0]
     data.append(line_data)
     if shortest_line_length == -1:
