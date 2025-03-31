@@ -41,34 +41,42 @@ def main():
 
     data = np.array(data)
 
+    varying = data.std(axis=0) > 1e-10
+    header = np.array(header)[varying]
+    data = data[:, varying]
+
     corr = np.corrcoef(data, rowvar=False)
+
+    EPS = 1e-5
+    indices = [i for i in range(corr.shape[1]) if (not np.all(np.isnan(corr[:, i]))) and (not np.all(np.abs(corr[:, i]) < EPS)) and (not args.variate_startswith or any([header[i].startswith(x) for x in args.variate_startswith.split(",")])) or (args.variates and header[i] in args.variates.split(","))]
+    if len(indices) < corr.shape[1]:
+        corr = corr[:, indices]
+        corr = corr[indices, :]
+        header = np.array([header[i] for i in indices])
 
     if args.variates:
         variates = [x.strip() for x in args.variates.split(",")]
-        variate_indices = [header.index(variate) for variate in variates if variate in header]
+        variate_indices = [header.tolist().index(variate) for variate in variates if variate in header]
         if not variate_indices:
             print("No valid variates found in the header. Exiting.")
             return
-        corr = corr[np.ix_(variate_indices, range(len(header)))]
+        corr = corr[variate_indices]
+        corr = corr[:, [i for i in range(corr.shape[1]) if i not in variate_indices]]
     
-    EPS = 1e-5
-    colindices = [i for i in range(corr.shape[1]) if (not np.any(np.isnan(corr[:, i]))) and (not np.any(np.abs(corr[:, i]) < EPS)) and (not args.variate_startswith or any([header[i].startswith(x) for x in args.variate_startswith.split(",")]))]
-    if len(colindices) < corr.shape[1]:
-        corr = corr[:, colindices]
-        header = [header[i] for i in colindices]
 
 
     fig, ax = plt.subplots()
     cax = ax.matshow(corr, cmap='coolwarm', vmin=-1, vmax=1)
     fig.colorbar(cax)
 
-    ax.set_xticks(range(len(header)))
-    if parser.parse_args().variates:
+    xticklabels = [x for i, x in enumerate(header) if not args.variates or (i not in variate_indices)]
+    ax.set_xticks(range(len(xticklabels)))
+    if args.variates:
         yticklabels = variates
     else:
         yticklabels = header
     ax.set_yticks(range(len(yticklabels)))
-    ax.set_xticklabels(header, rotation=90)
+    ax.set_xticklabels(xticklabels, rotation=90)
     ax.set_yticklabels(yticklabels)
 
     plt.tight_layout()
