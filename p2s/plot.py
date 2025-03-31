@@ -12,26 +12,33 @@ def main(method=plt.plot):
     args = parser.parse_args()
 
     plt.figure()
-    if "Y" in os.environ:
-        y = int(os.environ["Y"].strip())
-    else:
-        y = None
     if "X" in os.environ:
-        if os.environ["X"] == "":
+        x = int(os.environ["X"].strip())
+    else:
+        x = None
+    if "Y" in os.environ:
+        if os.environ["Y"] == "":
             cols = None
         else:
-            cols = [int(x.strip()) for x in os.environ["X"].split(",")]
+            cols = [int(x.strip()) for x in os.environ["Y"].split(",")]
     else:
         cols = None
+    if "Z" in os.environ:
+        if os.environ["Z"] == "":
+            z = None
+        else:
+            z = int(os.environ["Z"].strip())
+    else:
+        z = None
     if args.labels == "":
         labels = None
     else:
         labels = [x.strip() for x in args.labels.split(",")]
     from .xy import data
-    xs = cols if cols is not None else np.arange(data.shape[1])
-    y = data[:, y] if y is not None else np.arange(data.shape[0])
-    for i, col in enumerate(xs):
-        method(y, data[:, col], label=labels[i] if (labels is not None) and i < len(labels) else None)
+    ys = cols if cols is not None else (np.arange(1, data.shape[1]) if data.shape[1] > 1 else [0])
+    x = data[:, x] if x is not None else (data[:, 0] if data.shape[1] > 1 else np.arange(data.shape[0]))
+    for i, col in enumerate(ys):
+        method(x, data[:, col], label=labels[i] if (labels is not None) and i < len(labels) else None)
     if labels is not None:
         plt.legend(labels)
     if args.xlabel != "":
